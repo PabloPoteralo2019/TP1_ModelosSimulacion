@@ -1,0 +1,24 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Datos dados
+D = 800000  # Demanda anual
+S = 200000  # Costo de hacer un pedido
+H = 400000  # Costo de mantener una unidad en inventario durante un año
+EOQ = 2.83  # Cantidad óptima de pedido
+
+# Calcular los costos totales para EOQ - 0.5, EOQ y EOQ + 0.5
+quantities = np.array([EOQ - 0.5, EOQ, EOQ + 0.5])
+costs = []
+
+for q in quantities:
+    total_cost = (D * S / q) + (q * H / 2) + S * H
+    costs.append(total_cost)
+
+# Graficar
+plt.plot(quantities, costs, marker='o', linestyle='-')
+plt.title('Costos Totales por Unidad de Tiempo (TCU) vs Cantidad de Pedido')
+plt.xlabel('Cantidad de Pedido (EOQ)')
+plt.ylabel('Costos Totales por Unidad de Tiempo (TCU)')
+plt.grid(True)
+plt.show()
